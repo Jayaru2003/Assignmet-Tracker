@@ -1,0 +1,21 @@
+{
+  "name": "student-assignment-tracker",
+  "version": "1.0.0",
+  "description": "Full-stack Student Assignment Tracker built with Node.js, Express, MongoDB (Mongoose), and EJS",
+  "main": "app.js",
+  "scripts": {
+    "start": "node app.js",
+    "dev": "node app.js"
+  },
+  "keywords": [],
+  "author": "",
+  "license": "ISC",
+  "type": "commonjs",
+  "dependencies": {
+    "dotenv": "^17.4.2",
+    "ejs": "^5.0.2",
+    "express": "^5.2.1",
+    "method-override": "^3.0.0",
+    "mongoose": "^9.6.2"
+  }
+}
