@@ -1,32 +1,24 @@
 // routes/assignmentRoutes.js
-// Defines RESTful routes for the Assignment resource
+// Protected web routes for the dashboard
 
 const express = require('express');
-const router = express.Router();
-const assignmentController = require('../controllers/assignmentController');
+const router  = express.Router();
+const ctrl    = require('../controllers/assignmentController');
+const { protect } = require('../middleware/auth');
 
-/**
- * GET /assignments
- * Dashboard — list all assignments (with optional ?filter=pending|completed)
- */
-router.get('/', assignmentController.getDashboard);
+// All routes here require a valid JWT (protect middleware)
+router.use(protect);
 
-/**
- * POST /assignments
- * Create a new assignment from form submission
- */
-router.post('/', assignmentController.createAssignment);
+// GET  /assignments          — dashboard view
+router.get('/',     ctrl.getDashboard);
 
-/**
- * PUT /assignments/:id
- * Update status of a specific assignment (via method-override from form POST)
- */
-router.put('/:id', assignmentController.updateAssignment);
+// POST /assignments          — create assignment
+router.post('/',    ctrl.createAssignment);
 
-/**
- * DELETE /assignments/:id
- * Delete a specific assignment (via method-override from form POST)
- */
-router.delete('/:id', assignmentController.deleteAssignment);
+// PUT  /assignments/:id      — update status (via method-override)
+router.put('/:id',  ctrl.updateAssignment);
+
+// DELETE /assignments/:id   — delete (via method-override)
+router.delete('/:id', ctrl.deleteAssignment);
 
 module.exports = router;
